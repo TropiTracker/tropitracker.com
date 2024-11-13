@@ -64,6 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             currentStormData.storms.push(stormData);
                         } else if (type.includes("depression")) {
                             currentStormData.depressions.push(stormData);
+                        } else if (type.includes("potential tropical cyclone")) {
+                            currentStormData.depressions.push(stormData);
                         }
                     });
                 });

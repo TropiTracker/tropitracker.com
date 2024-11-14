@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const stormCount = document.getElementById('storm-count');
 
-    const hurricaneList = document.getElementById('hurricanes');
     const depList = document.getElementById('depressions');
     const stormList = document.getElementById('storms');
 
@@ -12,18 +11,18 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentImageType = 'cone';
 
     const depButton = document.getElementById('depression-label');
-    depButton.onclick = toggleDeps;
+    depButton.onclick = toggleTD;
 
-    const depDropdown = document.getElementById('dep-dropdown');
+    const hurricaneDropdown = document.getElementById('depression-dropdown');
 
-    function toggleDeps() {
+    function toggleTD() {
         if (hideTD) {
             depList.style.display = "block";
-            depDropdown.innerHTML = "arrow_drop_down";
+            hurricaneDropdown.innerHTML = "arrow_drop_down";
             hideTD = false;
         } else {
             depList.style.display = "none";
-            depDropdown.innerHTML = "arrow_right";
+            hurricaneDropdown.innerHTML = "arrow_right";
             hideTD = true;
         }
     }

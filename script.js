@@ -5,8 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const depList = document.getElementById('depressions');
     const stormList = document.getElementById('storms');
 
-    const proxyUrl = 'https://corsproxy.io/?';
-
     let hideHurricanes = true;
     let hideTS = true;
     let hideTD = true;
@@ -69,41 +67,32 @@ document.addEventListener('DOMContentLoaded', () => {
             depressions: []
         };
 
-        const xmlUrls = [
-            `https://www.nhc.noaa.gov/index-at.xml?timestamp=${new Date().getTime()}&date=${new Date().getDate()}`,
-            `https://www.nhc.noaa.gov/index-ep.xml?timestamp=${new Date().getTime()}&date=${new Date().getDate()}`,
-            `https://www.nhc.noaa.gov/index-cp.xml?timestamp=${new Date().getTime()}&date=${new Date().getDate()}`
-        ];
+        const api = 'https://api.tropitracker.com/index.json'
 
-        Promise.all(xmlUrls.map(url => fetch(proxyUrl + url).then(response => response.text())))
-            .then(responses => {
-                responses.forEach(str => {
-                    const data = (new window.DOMParser()).parseFromString(str, "text/xml");
-                    const storms = data.getElementsByTagNameNS('*', 'Cyclone');
+        fetch(api).then(response => response.json())
+            .then(data => {
+                data.activeStorms.forEach(cyclone => {
+                    const name = cyclone.name
+                    const type = cyclone.type
+                    const datetime = cyclone.datetime
+                    const movement = cyclone.movement
+                    const pressure = cyclone.pressure
+                    const wind = cyclone.wind
+                    const headline = cyclone.headline
+                    const category = cyclone.category
+                    const coneTrack = cyclone.coneTrack
+                    const satelliteGif = cyclone.satelliteGif
+                    const irSatelliteGif = cyclone.irSatelliteGif
 
-                    Array.from(storms).forEach(storm => {
-                        const name = storm.getElementsByTagNameNS('*', 'name')[0].textContent;
-                        const type = storm.getElementsByTagNameNS('*', 'type')[0].textContent.toLowerCase();
-                        const atcf = storm.getElementsByTagNameNS('*', 'atcf')[0].textContent;
-                        const datetime = storm.getElementsByTagNameNS('*', "datetime")[0].textContent;
-                        const movement = storm.getElementsByTagNameNS('*', "movement")[0].textContent;
-                        const pressure = storm.getElementsByTagNameNS('*', "pressure")[0].textContent;
-                        const wind = storm.getElementsByTagNameNS('*', "wind")[0].textContent;
-                        const headline = storm.getElementsByTagNameNS('*', "headline")[0].textContent;
-
-                        const stormData = { type, name, atcf, datetime, movement, pressure, wind, headline };
-                        if (type === "hurricane") {
-                            currentStormData.hurricanes.push(stormData);
-                        } else if (type.includes("storm")) {
-                            currentStormData.storms.push(stormData);
-                        } else if (type.includes("depression")) {
-                            currentStormData.depressions.push(stormData);
-                        } else if (type.includes("potential tropical cyclone")) {
-                            currentStormData.depressions.push(stormData);
-                        }
-                    });
+                    const stormData = {type, name, category, datetime, movement, pressure, wind, headline, coneTrack, satelliteGif, irSatelliteGif};
+                    if (type == "Hurricane") {
+                        currentStormData.hurricanes.push(stormData);
+                    } else if (type == "Tropical Storm") {
+                        currentStormData.storms.push(stormData);
+                    } else if (type == "Tropical Depression" || type == "Potential Tropical Cyclone") {
+                        currentStormData.depressions.push(stormData);
+                    }
                 });
-
                 updateStormLists(currentStormData);
             })
             .catch(error => {
@@ -131,12 +120,12 @@ document.addEventListener('DOMContentLoaded', () => {
         depButton.style.display = activeTropicalDeps === 0 ? "none" : "block";
     }
 
-    function updateStormList(listElement, storms, type) {
+    function updateStormList(listElement, storms) {
         listElement.innerHTML = '';
         storms.forEach(storm => {
             const stormListItem = createStormListItem(
-                storm.type, storm.name, storm.atcf, storm.datetime,
-                storm.movement, storm.pressure, storm.wind.slice(0, storm.wind.lastIndexOf(' ')), storm.headline
+                storm.type, storm.name, storm.category, storm.datetime,
+                storm.movement, storm.pressure, storm.wind, storm.headline, storm.coneTrack, storm.satelliteGif, storm.irSatelliteGif
             );
             listElement.appendChild(stormListItem);
 
@@ -147,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function createStormListItem(type, name, atcf, datetime, movement, pressure, wind, headline) {
+    function createStormListItem(type, name, category, datetime, movement, pressure, wind, headline, coneTrack, satelliteGif, irSatelliteGif) {
         const stormListItem = document.createElement('div');
 
         const stormText = document.createElement('span');
@@ -161,8 +150,6 @@ document.addEventListener('DOMContentLoaded', () => {
             stormListItem.className = "hurricane-list-item";
             stormListItem.appendChild(hurricaneIcon);
 
-            let category = getHurricaneCategory(wind);
-
             if (category >= 3) {
                 type = "Major Hurricane";
             } else {
@@ -170,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             stormListItem.innerHTML += `${type} ${name}: Category ${category}`;
-        } else if (type.includes("storm")) {
+        } else if (type == "Tropical Storm") {
             const tsIcon = document.createElement('img');
             tsIcon.src = '/images/tropical-storm.png';
             tsIcon.id = 'hurricane-icon';
@@ -204,16 +191,6 @@ document.addEventListener('DOMContentLoaded', () => {
         details.innerHTML = `Winds: ${wind} MPH<br>Pressure: ${pressure}<br>Movement: ${movement}`;
         stormListItem.appendChild(details);
 
-        let fourDigitAtcf;
-        if (atcf.includes("AL")) {
-            fourDigitAtcf = "AT" + atcf.slice(2, 4);
-        } else {
-            fourDigitAtcf = atcf.slice(0, 4);
-        }
-        const coneGraphicUrl = `https://www.nhc.noaa.gov/storm_graphics/${fourDigitAtcf}/${atcf}_5day_expCone.png`;
-        const satelliteUrl = `https://cdn.star.nesdis.noaa.gov/FLOATER/data/${atcf}/GEOCOLOR/${atcf}-GEOCOLOR-1000x1000.gif`;
-        const IrSatUrl = `https://cdn.star.nesdis.noaa.gov/FLOATER/data/${atcf}/13/${atcf}-13-1000x1000.gif`;
-
         const imgButtonDiv = document.createElement('div');
         imgButtonDiv.className = 'img-button-div';
         stormListItem.appendChild(imgButtonDiv);
@@ -237,21 +214,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const coneImage = document.createElement('img');
         coneImage.className = `storm-image`;
-        coneImage.src = coneGraphicUrl;
+        coneImage.src = coneTrack;
         coneImage.id = "coneImage";
         coneImage.style.display = "block";
         stormListItem.appendChild(coneImage);
 
         const satImage = document.createElement('img');
         satImage.className = `storm-image`;
-        satImage.src = satelliteUrl;
+        satImage.src = satelliteGif;
         satImage.id = "satImage";
         satImage.style.display = "none";
         stormListItem.appendChild(satImage);
 
         const irImage = document.createElement('img');
         irImage.className = `storm-image`;
-        irImage.src = IrSatUrl;
+        irImage.src = irSatelliteGif;
         irImage.id = "irImage";
         irImage.style.display = "none";
         stormListItem.appendChild(irImage);

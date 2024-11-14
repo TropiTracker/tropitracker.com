@@ -114,6 +114,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (type.includes("depression")) {
             stormListItem.className = "depression-list-item";
             stormListItem.innerHTML = `${type} ${name}`;
+        } else if (type.includes("potential")) {
+            stormListItem.className = "depression-list-item";
+            stormListItem.innerHTML = `Potential TC ${name}`;
         }
 
         const update = document.createElement('div');

@@ -50,11 +50,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     const irSatelliteGif = hurricane.irSatelliteGif
 
                     const stormData = {type, name, datetime, movement, pressure, wind, headline, coneTrack, satelliteGif, irSatelliteGif};
-                    if (type == "Hurricane") {
+                    if (type.toLowerCase() == "hurricane") {
                         currentStormData.hurricanes.push(stormData);
-                    } else if (type == "Tropical Storm") {
+                    } else if (type.toLowerCase() == "tropical storm") {
                         currentStormData.storms.push(stormData);
-                    } else if (type == "Tropical Depression" || type == "Potential Tropical Cyclone") {
+                    } else if (type.toLowerCase() == "tropical depression" || type.toLowerCase() == "potential tropical cyclone") {
                         currentStormData.depressions.push(stormData);
                     }
                 });
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const stormText = document.createElement('span');
         stormListItem.appendChild(stormText);
 
-        if (type == "Hurricane") {
+        if (type.toLowerCase() == "hurricane") {
             const hurricaneIcon = document.createElement('img');
             hurricaneIcon.src = '/images/hurricane.png';
             hurricaneIcon.id = 'hurricane-icon';

@@ -49,11 +49,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     const irSatelliteGif = depression.irSatelliteGif
 
                     const stormData = {type, name, datetime, movement, pressure, wind, headline, coneTrack, satelliteGif, irSatelliteGif};
-                    if (type == "Hurricane") {
+                    if (type.toLowerCase() == "hurricane") {
                         currentStormData.hurricanes.push(stormData);
-                    } else if (type == "Tropical Storm") {
+                    } else if (type.toLowerCase() == "tropical storm") {
                         currentStormData.storms.push(stormData);
-                    } else if (type == "Tropical Depression" || type == "Potential Tropical Cyclone") {
+                    } else if (type.toLowerCase() == "tropical depression" || type.toLowerCase() == "potential tropical cyclone") {
                         currentStormData.depressions.push(stormData);
                     }
                 });
@@ -98,10 +98,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const stormText = document.createElement('span');
         stormListItem.appendChild(stormText);
 
-        if (type == "Tropical Depression") {
+        if (type.toLowerCase() == "tropical depression") {
             stormListItem.className = "depression-list-item";
             stormListItem.innerHTML = `${type} ${name}`;
-        } else if (type == "Potential Tropical Cyclone") {
+        } else if (type.toLowerCase() == "potential tropical cyclone") {
             stormListItem.className = "depression-list-item";
             stormListItem.innerHTML = `Potential TC ${name}`;
         }

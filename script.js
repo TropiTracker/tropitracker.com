@@ -85,11 +85,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     const irSatelliteGif = cyclone.irSatelliteGif
 
                     const stormData = {type, name, category, datetime, movement, pressure, wind, headline, coneTrack, satelliteGif, irSatelliteGif};
-                    if (type == "Hurricane") {
+                    if (type.toLowerCase() == "hurricane") {
                         currentStormData.hurricanes.push(stormData);
-                    } else if (type == "Tropical Storm") {
+                    } else if (type.toLowerCase() == "tropical storm") {
                         currentStormData.storms.push(stormData);
-                    } else if (type == "Tropical Depression" || type == "Potential Tropical Cyclone") {
+                    } else if (type.toLowerCase() == "tropical depression" || type.toLowerCase() == "potential tropical cyclone") {
                         currentStormData.depressions.push(stormData);
                     }
                 });
@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const stormText = document.createElement('span');
         stormListItem.appendChild(stormText);
 
-        if (type === "hurricane") {
+        if (type.toLowerCase() === "hurricane") {
             const hurricaneIcon = document.createElement('img');
             hurricaneIcon.src = '/images/hurricane.png';
             hurricaneIcon.id = 'hurricane-icon';
@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             stormListItem.innerHTML += `${type} ${name}: Category ${category}`;
-        } else if (type == "Tropical Storm") {
+        } else if (type.toLowerCase() == "tropical storm") {
             const tsIcon = document.createElement('img');
             tsIcon.src = '/images/tropical-storm.png';
             tsIcon.id = 'hurricane-icon';
@@ -165,10 +165,10 @@ document.addEventListener('DOMContentLoaded', () => {
             stormListItem.appendChild(tsIcon);
 
             stormListItem.innerHTML += `${type} ${name}`;
-        } else if (type.includes("depression")) {
+        } else if (type.toLowerCase().includes("depression")) {
             stormListItem.className = "depression-list-item";
             stormListItem.innerHTML = `${type} ${name}`;
-        } else if (type.includes("potential")) {
+        } else if (type.toLowerCase().includes("potential")) {
             stormListItem.className = "depression-list-item";
             stormListItem.innerHTML = `Potential TC ${name}`;
         }

@@ -482,4 +482,5 @@ button#outlooks-label:hover {
     padding-right: 10px;
     width: 50%;
     font-size: 1vw;
+    line-height: 0.625vw;
 }

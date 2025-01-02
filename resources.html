@@ -1,71 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <link rel="stylesheet" href="style.css">
-        <title>Tropi•Tracker</title>
-        <meta name="description" content="TropiTracker is an open-source tropical cyclone tracker that provides you with details on active and upcoming tropical cyclones such as wind speed, satellite imagery, movement speed, future tracks, and more. TropiTracker's update feature ensures that you get vital updates the minute they happen. Get prepared and stay ahead of the storm with TropiTracker!">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-        <!-- yeah i know the favicon isn't easy to read but it's the best i could do-->
+    <link rel="stylesheet" href="style.css">
+    <title>Tropi•Tracker</title>
+    <meta name="description"
+        content="TropiTracker is an open-source tropical cyclone tracker that provides you with details on active and upcoming tropical cyclones such as wind speed, satellite imagery, movement speed, future tracks, and more. TropiTracker's update feature ensures that you get vital updates the minute they happen. Get prepared and stay ahead of the storm with TropiTracker!">
 
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-    <body>
-        <div id="fullscreenNavbar">
-            <button id="closeNavButton" class="material-symbols-outlined" onclick="closeNav()">
-                close
-            </button>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <!-- yeah i know the favicon isn't easy to read but it's the best i could do-->
 
-            <div id="fullscreenNav">
-                <a id="fullscreenNavButton" href="https://tropitracker.com">Home</a>
-                <a id="fullscreenNavButton" href="./outlooks">Outlooks</a>
-                <a id="fullscreenNavButton" href="./hurricanes">Hurricanes</a>
-                <a id="fullscreenNavButton" href="./storms">Tropical Storms</a>
-                <a id="fullscreenNavButton" href="./depressions">Tropical Depressions</a>
-                <a id="fullscreenNavButton" href="./resources" style="text-decoration: underline;">Resources</a>
-            </div>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+<body>
+    <div id="fullscreenNavbar">
+        <button id="closeNavButton" class="material-symbols-outlined" onclick="closeNav()">
+            close
+        </button>
+
+        <div id="fullscreenNav">
+            <a id="fullscreenNavButton" href="https://tropitracker.com">Home</a>
+            <a id="fullscreenNavButton" href="./outlooks">Outlooks</a>
+            <a id="fullscreenNavButton" href="./hurricanes">Hurricanes</a>
+            <a id="fullscreenNavButton" href="./storms">Tropical Storms</a>
+            <a id="fullscreenNavButton" href="./depressions">Tropical Depressions</a>
+            <a id="fullscreenNavButton" href="./resources" style="text-decoration: underline;">Resources</a>
         </div>
+    </div>
 
-        <div id="navbar" style="font-family: Arial, Helvetica, sans-serif;">
-            <button id="mainNavButton" class="material-symbols-outlined" onclick="openNav()">
-                menu
-            </button>
+    <div id="navbar" style="font-family: Arial, Helvetica, sans-serif;">
+        <button id="mainNavButton" class="material-symbols-outlined" onclick="openNav()">
+            menu
+        </button>
 
-            <button id="navButton">
-                <a class="no-underline" href="https://tropitracker.com">Home</a>
-            </button>
-            <button id="navButton">
-                <a class="no-underline" href="./outlooks">Outlooks</a>
-            </button>
-            <button id="navButton">
-                <a class="no-underline" href="./hurricanes">Hurricanes</a>
-            </button>
-            <button id="navButton">
-                <a class="no-underline" href="./storms">Tropical Storms</a>
-            </button>
-            <button id="navButton">
-                <a class="no-underline" href="./depressions">Tropical Depressions</a>
-            </button>
-            <button id="navButton">
-                <a class="underline" href="./resources">Resources</a>
-            </button>
-        </div>
+        <button id="navButton">
+            <a class="no-underline" href="https://tropitracker.com">Home</a>
+        </button>
+        <button id="navButton">
+            <a class="no-underline" href="./outlooks">Outlooks</a>
+        </button>
+        <button id="navButton">
+            <a class="no-underline" href="./hurricanes">Hurricanes</a>
+        </button>
+        <button id="navButton">
+            <a class="no-underline" href="./storms">Tropical Storms</a>
+        </button>
+        <button id="navButton">
+            <a class="no-underline" href="./depressions">Tropical Depressions</a>
+        </button>
+        <button id="navButton">
+            <a class="underline" href="./resources">Resources</a>
+        </button>
+    </div>
 
-        <script src="https://uptime.betterstack.com/widgets/announcement.js" data-id="191054" async="async" type="text/javascript"></script>
+    <script src="https://uptime.betterstack.com/widgets/announcement.js" data-id="191054" async="async"
+        type="text/javascript"></script>
 
-        <div id="active-header">Tropi<img src="/images/tropical-storm.png" id="hurricane-icon" style="width: 50px;">Tracker</div>
-        <div id="storm-count">Resources</div>
+    <div id="active-header">Tropi<img src="/images/tropical-storm.png" id="hurricane-icon" style="width: 50px;">Tracker
+    </div>
+    <div id="storm-count">Resources</div>
 
-        <div id="resources" style="text-align: left; background-color:gray; color: white; margin-top: 10px; padding-left: 5px; font-size: 30px">
-            Tropi•Tracker only uses information from the <a href="https://hurricanes.gov">National Hurricane Center</a>, ensuring that all data is accurate and reliable.
-            <br/><br/>
-            All data is fetched from official NHC RSS feeds. These feeds are all public and free to use. If you would like to use them in your own application, refer to <a href="https://www.nhc.noaa.gov/aboutrss.shtml">this link</a>.
-            <br/><br/>
-            Alternatively, Tropi•Tracker also has a public API that is open-source & free to use. However, it is currently unfinished and may not be as reliable as opposed to the National Hurricane Center's RSS feeds.
-            <br/>
-            If you would like to use this API in your own applications, refer to <a href="https://api.tropitracker.com">api.tropitracker.com</a> or visit the <a href="https://github.com/TropiTracker/api.tropitracker.com">GitHub page</a>.
-        </div>
-    </body>
+    <div id="resources"
+        style="text-align: left; background-color:gray; color: white; margin-top: 10px; padding-left: 5px; font-size: 30px">
+        TropiTracker only uses information from the <a href="https://hurricanes.gov">National Hurricane Center</a>,
+        ensuring that all data is accurate and reliable.
+        <br /><br />
+        All data is fetched from the TropiTracker API, which fetches info from official NHC RSS feeds. This API is
+        open-source & free to use. It updates every 5 minutes and
+        puts all info from the NHC RSS feeds into more user-friendly JSON files, as well as adding extra details that
+        the NHC does not natively support such as hurricane category (based off winds), satellite and IR satellite gifs,
+        and cone tracks (experimental cone tracks, which show how far inland the warnings go).
+        <br />
+        If you would like to use this API in your own applications, refer to <a
+            href="https://api.tropitracker.com">api.tropitracker.com</a> or visit the <a
+            href="https://github.com/TropiTracker/api.tropitracker.com">GitHub page</a>.
+        <br /><br />
+        Alternatively, if you would like to use the RSS feeds from the NHC, click <a
+            href="https://www.nhc.noaa.gov/aboutrss.shtml">this link</a>.
+
+    </div>
+</body>
+
 </html>

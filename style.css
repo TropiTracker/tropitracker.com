@@ -12,11 +12,11 @@ body {
 }
 
 .material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 24
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
 }
 
 div#fullscreenNavbar {
@@ -227,6 +227,7 @@ div#storm-count {
     from {
         transform: rotate(359deg);
     }
+
     to {
         transform: rotate(0deg);
     }
@@ -482,5 +483,4 @@ button#outlooks-label:hover {
     padding-right: 10px;
     width: 50%;
     font-size: 1vw;
-    line-height: 0.625vw;
 }

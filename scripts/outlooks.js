@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const outlookText = document.getElementById("outlook");
 
     fetchOutlookData('atlantic', outlookText);
-    
+
     atlButton.onclick = () => changeImageDisplay('atlantic', outlookText, atlImage, pacImage, cpacImage);
     pacButton.onclick = () => changeImageDisplay('eastPacific', outlookText, pacImage, atlImage, cpacImage);
     cpacButton.onclick = () => changeImageDisplay('centralPacific', outlookText, cpacImage, pacImage, atlImage);
@@ -22,13 +22,14 @@ function fetchOutlookData(region, outlookText) {
     fetch(api)
         .then(response => response.json())
         .then(data => {
-            const outlookData = data.outlooks[`${region}Outlook`].desc//;
+            const outlookData = data.outlooks[`${region}Outlook`].desc;
+            console.log(JSON.stringify(outlookData))
 
             outlookText.innerHTML = outlookData;
         })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+        .catch(error => {
+            console.error('Error:', error);
+        });
 }
 
 function changeImageDisplay(region, outlookText, showImage, ...hideImages) {

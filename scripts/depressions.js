@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let hideTD = true;
 
-    const api = 'https://api.tropitracker.com/tropical-storms.json'
+    const api = 'https://api.tropitracker.com/active_storms'
 
     let currentImageType = 'cone';
 
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         fetch(api).then(response => response.json())
             .then(data => {
-                data.activeStorms.forEach(depression => {
+                data.forEach(depression => {
                     const name = depression.name
                     const type = depression.type
                     const datetime = depression.datetime
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const satelliteGif = depression.satelliteGif
                     const irSatelliteGif = depression.irSatelliteGif
 
-                    const stormData = {type, name, datetime, movement, pressure, wind, headline, coneTrack, satelliteGif, irSatelliteGif};
+                    const stormData = { type, name, datetime, movement, pressure, wind, headline, coneTrack, satelliteGif, irSatelliteGif };
                     if (type.toLowerCase() == "hurricane") {
                         currentStormData.hurricanes.push(stormData);
                     } else if (type.toLowerCase() == "tropical storm") {
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateStormList(depList, stormData.depressions, "depression");
 
         const activeTropicalDeps = depList.children.length;
-        
+
         let depProperGrammar = activeTropicalDeps === 1 ? "Tropical Depression" : "Tropical Depressions";
 
         stormCount.textContent = `Found ${activeTropicalDeps} ${depProperGrammar}.`;

@@ -67,11 +67,11 @@ document.addEventListener('DOMContentLoaded', () => {
             depressions: []
         };
 
-        const api = 'https://api.tropitracker.com/index.json'
+        const api = 'https://api.tropitracker.com/'
 
         fetch(api).then(response => response.json())
             .then(data => {
-                data.activeStorms.forEach(cyclone => {
+                data.forEach(cyclone => {
                     const name = cyclone.name
                     const type = cyclone.type
                     const datetime = cyclone.datetime
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const satelliteGif = cyclone.satelliteGif
                     const irSatelliteGif = cyclone.irSatelliteGif
 
-                    const stormData = {type, name, category, datetime, movement, pressure, wind, headline, coneTrack, satelliteGif, irSatelliteGif};
+                    const stormData = { type, name, category, datetime, movement, pressure, wind, headline, coneTrack, satelliteGif, irSatelliteGif };
                     if (type.toLowerCase() == "hurricane") {
                         currentStormData.hurricanes.push(stormData);
                     } else if (type.toLowerCase() == "tropical storm") {

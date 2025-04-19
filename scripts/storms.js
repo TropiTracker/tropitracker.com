@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let hideTS = true;
 
-    const api = 'https://api.tropitracker.com/tropical-storms.json'
+    const api = 'https://api.tropitracker.com/active_storms'
 
     let currentImageType = 'cone';
 
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         fetch(api).then(response => response.json())
             .then(data => {
-                data.activeStorms.forEach(storm => {
+                data.forEach(storm => {
                     const name = storm.name
                     const type = storm.type
                     const datetime = storm.datetime
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const satelliteGif = storm.satelliteGif
                     const irSatelliteGif = storm.irSatelliteGif
 
-                    const stormData = {type, name, datetime, movement, pressure, wind, headline, coneTrack, satelliteGif, irSatelliteGif};
+                    const stormData = { type, name, datetime, movement, pressure, wind, headline, coneTrack, satelliteGif, irSatelliteGif };
                     if (type.toLowerCase() == "hurricane") {
                         currentStormData.hurricanes.push(stormData);
                     } else if (type.toLowerCase() == "tropical storm") {

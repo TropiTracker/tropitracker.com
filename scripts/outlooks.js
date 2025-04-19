@@ -1,4 +1,4 @@
-const api = 'https://api.tropitracker.com/index.json'
+const api = 'https://api.tropitracker.com/outlooks'
 
 document.addEventListener('DOMContentLoaded', () => {
     const atlButton = document.getElementById("atlButton");
@@ -22,7 +22,7 @@ function fetchOutlookData(region, outlookText) {
     fetch(api)
         .then(response => response.json())
         .then(data => {
-            const outlookData = data.outlooks[`${region}Outlook`].description;
+            const outlookData = data[`${region}Outlook`].description;
             console.log(JSON.stringify(outlookData))
 
             outlookText.innerHTML = outlookData;

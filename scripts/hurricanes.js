@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const depList = document.getElementById('depressions');
     const stormList = document.getElementById('storms');
 
-    const api = 'https://api.tropitracker.com/hurricanes.json';
+    const api = 'https://api.tropitracker.com/active_storms';
 
     let hideHurricanes = true;
 
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         fetch(api).then(response => response.json())
             .then(data => {
-                data.activeHurricanes.forEach(hurricane => {
+                data.forEach(hurricane => {
                     const name = hurricane.name
                     const type = hurricane.type
                     const datetime = hurricane.datetime
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const satelliteGif = hurricane.satelliteGif
                     const irSatelliteGif = hurricane.irSatelliteGif
 
-                    const stormData = {type, name, datetime, movement, pressure, wind, headline, coneTrack, satelliteGif, irSatelliteGif};
+                    const stormData = { type, name, datetime, movement, pressure, wind, headline, coneTrack, satelliteGif, irSatelliteGif };
                     if (type.toLowerCase() == "hurricane") {
                         currentStormData.hurricanes.push(stormData);
                     } else if (type.toLowerCase() == "tropical storm") {
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const activeHurricanes = hurricaneList.children.length;
 
         let hurricaneProperGrammar = activeHurricanes === 1 ? "Hurricane" : "Hurricanes";
-        
+
         stormCount.textContent = `Found ${activeHurricanes} ${hurricaneProperGrammar}.`;
 
         hurricaneButton.style.display = activeHurricanes === 0 ? "none" : "block";

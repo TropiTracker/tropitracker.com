@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
             depressions: []
         };
 
-        const api = 'https://api.tropitracker.com/'
+        const api = 'https://api.tropitracker.com/active_storms'
 
         fetch(api).then(response => response.json())
             .then(data => {

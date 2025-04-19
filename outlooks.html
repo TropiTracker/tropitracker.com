@@ -1,80 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <link rel="stylesheet" href="style.css">
-        <title>Tropical Weather Outlooks | Tropi•Tracker</title>
-        <meta name="description" content="TropiTracker's outlook page. | TropiTracker is an open-source tropical cyclone tracker that provides you with details on active and upcoming tropical cyclones such as wind speed, satellite imagery, movement speed, future tracks, and more. TropiTracker's update feature ensures that you get vital updates the minute they happen. Get prepared and stay ahead of the storm with TropiTracker!">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-        <!-- yeah i know the favicon isn't easy to read but it's the best i could do-->
+    <link rel="stylesheet" href="style.css">
+    <title>Tropical Weather Outlooks | Tropi•Tracker</title>
+    <meta name="description"
+        content="TropiTracker's outlook page. | TropiTracker is an open-source tropical cyclone tracker that provides you with details on active and upcoming tropical cyclones such as wind speed, satellite imagery, movement speed, future tracks, and more. TropiTracker's update feature ensures that you get vital updates the minute they happen. Get prepared and stay ahead of the storm with TropiTracker!">
 
-        <script src="scripts/outlooks.js"></script>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <!-- yeah i know the favicon isn't easy to read but it's the best i could do-->
 
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-    <body>
-        <div id="fullscreenNavbar">
-            <button id="closeNavButton" class="material-symbols-outlined" onclick="closeNav()">
-                close
-            </button>
+    <script src="scripts/outlooks.js"></script>
 
-            <div id="fullscreenNav">
-                <a id="fullscreenNavButton" href="https://tropitracker.com">Home</a>
-                <a id="fullscreenNavButton" href="./outlooks" style="text-decoration: underline;">Outlooks</a>
-                <a id="fullscreenNavButton" href="./hurricanes">Hurricanes</a>
-                <a id="fullscreenNavButton" href="./storms">Tropical Storms</a>
-                <a id="fullscreenNavButton" href="./depressions">Tropical Depressions</a>
-                <a id="fullscreenNavButton" href="./resources">Resources</a>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+<body>
+    <div id="fullscreenNavbar">
+        <button id="closeNavButton" class="material-symbols-outlined" onclick="closeNav()">
+            close
+        </button>
+
+        <div id="fullscreenNav">
+            <a id="fullscreenNavButton" href="https://tropitracker.com">Home</a>
+            <a id="fullscreenNavButton" href="./outlooks" style="text-decoration: underline;">Outlooks</a>
+            <a id="fullscreenNavButton" href="./hurricanes">Hurricanes</a>
+            <a id="fullscreenNavButton" href="./storms">Tropical Storms</a>
+            <a id="fullscreenNavButton" href="./depressions">Tropical Depressions</a>
+            <a id="fullscreenNavButton" href="./resources">Resources</a>
+        </div>
+    </div>
+
+    <div id="navbar" style="font-family: Arial, Helvetica, sans-serif;">
+        <button id="mainNavButton" class="material-symbols-outlined" onclick="openNav()">
+            menu
+        </button>
+
+        <button id="navButton">
+            <a class="no-underline" href="https://tropitracker.com">Home</a>
+        </button>
+        <button id="navButton">
+            <a class="underline" href="./outlooks">Outlooks</a>
+        </button>
+        <button id="navButton">
+            <a class="no-underline" href="./hurricanes">Hurricanes</a>
+        </button>
+        <button id="navButton">
+            <a class="no-underline" href="./storms">Tropical Storms</a>
+        </button>
+        <button id="navButton">
+            <a class="no-underline" href="./depressions">Tropical Depressions</a>
+        </button>
+        <button id="navButton">
+            <a class="no-underline" href="./resources">Resources</a>
+        </button>
+    </div>
+
+
+    <script src="https://uptime.betterstack.com/widgets/announcement.js" data-id="191054" async="async"
+        type="text/javascript"></script>
+
+    <div id="active-header">Tropi<img src="/images/tropical-storm.png" id="hurricane-icon" style="width: 50px;">Tracker
+    </div>
+    <div id="storm-count">Tropical Weather Outlooks</div>
+
+    <div class="outlook-list-item" style="margin-top: 10px; padding-top: 5px;">
+        <div class="outlook-label">
+            <div class="img-button-div" style="padding-bottom: 10px;">
+                <button class="img-button" id="atlButton">Atlantic</button>
+                <button class="img-button" id="pacButton">Eastern Pacific</button>
+                <button class="img-button" id="cpacButton">Central Pacific</button>
             </div>
+
+            <img id="atlImage" class="outlook-image" src="https://www.nhc.noaa.gov/xgtwo/two_atl_7d0.png">
+            <img id="pacImage" class="outlook-image" src="https://www.nhc.noaa.gov/xgtwo/two_pac_7d0.png"
+                style="display: none;">
+            <img id="cpacImage" class="outlook-image" src="https://www.nhc.noaa.gov/xgtwo/two_cpac_7d0.png"
+                style="display: none;">
         </div>
 
-        <div id="navbar" style="font-family: Arial, Helvetica, sans-serif;">
-            <button id="mainNavButton" class="material-symbols-outlined" onclick="openNav()">
-                menu
-            </button>
+        <pre class="outlook-discussions" id="outlook"></pre>
+    </div>
+</body>
 
-            <button id="navButton">
-                <a class="no-underline" href="https://tropitracker.com">Home</a>
-            </button>
-            <button id="navButton">
-                <a class="underline" href="./outlooks">Outlooks</a>
-            </button>
-            <button id="navButton">
-                <a class="no-underline" href="./hurricanes">Hurricanes</a>
-            </button>
-            <button id="navButton">
-                <a class="no-underline" href="./storms">Tropical Storms</a>
-            </button>
-            <button id="navButton">
-                <a class="no-underline" href="./depressions">Tropical Depressions</a>
-            </button>
-            <button id="navButton">
-                <a class="no-underline" href="./resources">Resources</a>
-            </button>
-        </div>
-
-
-        <script src="https://uptime.betterstack.com/widgets/announcement.js" data-id="191054" async="async" type="text/javascript"></script>
-
-        <div id="active-header">Tropi<img src="/images/tropical-storm.png" id="hurricane-icon" style="width: 50px;">Tracker</div>
-        <div id="storm-count">Tropical Weather Outlooks</div>
-
-        <div class="outlook-list-item" style="margin-top: 10px; padding-top: 5px;">
-            <div class="outlook-label">
-                <div class="img-button-div" style="padding-bottom: 10px;">
-                    <button class="img-button" id="atlButton">Atlantic</button>
-                    <button class="img-button" id="pacButton">Eastern Pacific</button>
-                    <button class="img-button" id="cpacButton">Central Pacific</button>
-                </div>
-
-                <img id="atlImage" class="storm-image" src="https://www.nhc.noaa.gov/xgtwo/two_atl_7d0.png">
-                <img id="pacImage" class="storm-image" src="https://www.nhc.noaa.gov/xgtwo/two_pac_7d0.png" style="display: none;">
-                <img id="cpacImage" class="storm-image" src="https://www.nhc.noaa.gov/xgtwo/two_cpac_7d0.png" style="display: none;">
-            </div>
-
-            <pre class="outlook-discussions" id="outlook"></pre>
-        </div>
-    </body>
 </html>

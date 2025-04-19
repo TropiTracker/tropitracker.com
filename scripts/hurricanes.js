@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let hurricaneProperGrammar = activeHurricanes === 1 ? "Hurricane" : "Hurricanes";
 
-        stormCount.textContent = `Found ${activeHurricanes} ${hurricaneProperGrammar}.`;
+        stormCount.textContent = `There are ${activeHurricanes} active ${hurricaneProperGrammar}.`;
 
         hurricaneButton.style.display = activeHurricanes === 0 ? "none" : "block";
     }

@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let stormProperGrammar = activeTropicalStorms === 1 ? "Tropical Storm" : "Tropical Storms";
         let depProperGrammar = activeTropicalDeps === 1 ? "Tropical Depression" : "Tropical Depressions";
 
-        stormCount.textContent = `Found ${activeHurricanes} ${hurricaneProperGrammar}, ${activeTropicalStorms} ${stormProperGrammar}, and ${activeTropicalDeps} ${depProperGrammar}.`;
+        stormCount.textContent = `There are ${activeHurricanes} active ${hurricaneProperGrammar}, ${activeTropicalStorms} active ${stormProperGrammar}, and ${activeTropicalDeps} active ${depProperGrammar}.`;
 
         hurricaneButton.style.display = activeHurricanes === 0 ? "none" : "block";
         stormButton.style.display = activeTropicalStorms === 0 ? "none" : "block";

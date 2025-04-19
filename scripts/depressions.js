@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let depProperGrammar = activeTropicalDeps === 1 ? "Tropical Depression" : "Tropical Depressions";
 
-        stormCount.textContent = `Found ${activeTropicalDeps} ${depProperGrammar}.`;
+        stormCount.textContent = `There are ${activeTropicalDeps} active ${depProperGrammar}.`;
 
         depButton.style.display = activeTropicalDeps === 0 ? "none" : "block";
     }

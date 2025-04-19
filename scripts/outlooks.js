@@ -22,7 +22,7 @@ function fetchOutlookData(region, outlookText) {
     fetch(api)
         .then(response => response.json())
         .then(data => {
-            const outlookData = data.outlooks[`${region}Outlook`].desc;
+            const outlookData = data.outlooks[`${region}Outlook`].description;
             console.log(JSON.stringify(outlookData))
 
             outlookText.innerHTML = outlookData;

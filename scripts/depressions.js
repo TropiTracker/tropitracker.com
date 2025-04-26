@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         fetch(api).then(response => response.json())
             .then(data => {
-                data.forEach(depression => {
+                data.active_storms.forEach(depression => {
                     const name = depression.name
                     const type = depression.type
                     const datetime = depression.datetime

@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         fetch(api).then(response => response.json())
             .then(data => {
-                data.forEach(cyclone => {
+                data.active_storms.forEach(cyclone => {
                     const name = cyclone.name
                     const type = cyclone.type
                     const datetime = cyclone.datetime

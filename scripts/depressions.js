@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(data => {
                 data.active_storms.forEach(depression => {
                     const name = depression.name
-                    const type = depression.type
+                    const type = depression.category
                     const datetime = depression.datetime
                     const movement = depression.movement
                     const pressure = depression.pressure
@@ -70,8 +70,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const activeTropicalDeps = depList.children.length;
 
         let depProperGrammar = activeTropicalDeps === 1 ? "Tropical Depression" : "Tropical Depressions";
+        let areIs = activeTropicalDeps === 1 ? "is" : "are";
 
-        stormCount.textContent = `There are ${activeTropicalDeps} active ${depProperGrammar}.`;
+        stormCount.textContent = `There ${areIs} ${activeTropicalDeps} active ${depProperGrammar}.`;
 
         depButton.style.display = activeTropicalDeps === 0 ? "none" : "block";
     }

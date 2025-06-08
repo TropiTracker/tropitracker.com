@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(data => {
                 data.active_storms.forEach(hurricane => {
                     const name = hurricane.name
-                    const type = hurricane.type
+                    const type = hurricane.category
                     const datetime = hurricane.datetime
                     const movement = hurricane.movement
                     const pressure = hurricane.pressure
@@ -71,8 +71,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const activeHurricanes = hurricaneList.children.length;
 
         let hurricaneProperGrammar = activeHurricanes === 1 ? "Hurricane" : "Hurricanes";
+        let areIs = activeHurricanes === 1 ? "is" : "are";
 
-        stormCount.textContent = `There are ${activeHurricanes} active ${hurricaneProperGrammar}.`;
+        stormCount.textContent = `There ${areIs} ${activeHurricanes} active ${hurricaneProperGrammar}.`;
 
         hurricaneButton.style.display = activeHurricanes === 0 ? "none" : "block";
     }

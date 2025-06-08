@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
         details.id = "details";
         details.style.marginTop = "10px";
         details.style.textDecoration = "underline";
-        details.innerHTML = `Winds: ${wind} MPH<br>Pressure: ${pressure}<br>Movement: ${movement}`;
+        details.innerHTML = `Winds: ${Math.round(wind)} MPH<br>Pressure: ${pressure} mb<br>Movement: ${movement}`;
         stormListItem.appendChild(details);
 
         const imgButtonDiv = document.createElement('div');

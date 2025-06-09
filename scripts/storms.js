@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(data => {
                 data.active_storms.forEach(storm => {
                     const name = storm.name
-                    const type = storm.category
+                    const type = storm.type
                     const datetime = storm.datetime
                     const movement = storm.movement
                     const pressure = storm.pressure
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const stormText = document.createElement('span');
         stormListItem.appendChild(stormText);
 
-        if (type == "tropical storm") {
+        if (type == "TS") {
             const tsIcon = document.createElement('img');
             tsIcon.src = '/images/tropical-storm.png';
             tsIcon.id = 'hurricane-icon';

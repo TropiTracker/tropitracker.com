@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(data => {
                 data.active_storms.forEach(depression => {
                     const name = depression.name
-                    const type = depression.category
+                    const type = depression.type
                     const datetime = depression.datetime
                     const movement = depression.movement
                     const pressure = depression.pressure
@@ -49,11 +49,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     const irSatelliteGif = depression.irSatelliteGif
 
                     const stormData = { type, name, datetime, movement, pressure, wind, headline, coneTrack, satelliteGif, irSatelliteGif };
-                    if (type.toLowerCase() == "hurricane") {
+                    if (type == "HU") {
                         currentStormData.hurricanes.push(stormData);
-                    } else if (type.toLowerCase() == "tropical storm") {
+                    } else if (type == "TS") {
                         currentStormData.storms.push(stormData);
-                    } else if (type.toLowerCase() == "tropical depression" || type.toLowerCase() == "potential tropical cyclone") {
+                    } else if (type == "TD" || type == "PTC") {
                         currentStormData.depressions.push(stormData);
                     }
                 });
@@ -99,10 +99,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const stormText = document.createElement('span');
         stormListItem.appendChild(stormText);
 
-        if (type.toLowerCase() == "tropical depression") {
+        if (type == "tropical depression") {
             stormListItem.className = "depression-list-item";
             stormListItem.innerHTML = `${type} ${name}`;
-        } else if (type.toLowerCase() == "potential tropical cyclone") {
+        } else if (type == "potential tropical cyclone") {
             stormListItem.className = "depression-list-item";
             stormListItem.innerHTML = `Potential TC ${name}`;
         }

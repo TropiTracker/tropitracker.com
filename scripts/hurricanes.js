@@ -39,7 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(data => {
                 data.active_storms.forEach(hurricane => {
                     const name = hurricane.name
-                    const type = hurricane.category
+                    const type = hurricane.type
+                    const category = hurricane.category
                     const datetime = hurricane.datetime
                     const movement = hurricane.movement
                     const pressure = hurricane.pressure
@@ -49,12 +50,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     const satelliteGif = hurricane.satelliteGif
                     const irSatelliteGif = hurricane.irSatelliteGif
 
-                    const stormData = { type, name, datetime, movement, pressure, wind, headline, coneTrack, satelliteGif, irSatelliteGif };
-                    if (type.toLowerCase() == "hurricane") {
+                    const stormData = { type, name, datetime, movement, pressure, wind, headline, coneTrack, satelliteGif, irSatelliteGif, category };
+                    if (type == "HU") {
                         currentStormData.hurricanes.push(stormData);
-                    } else if (type.toLowerCase() == "tropical storm") {
+                    } else if (type == "TS") {
                         currentStormData.storms.push(stormData);
-                    } else if (type.toLowerCase() == "tropical depression" || type.toLowerCase() == "potential tropical cyclone") {
+                    } else if (type == "TD" || type == "PTC") {
                         currentStormData.depressions.push(stormData);
                     }
                 });
@@ -94,13 +95,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function createStormListItem(type, name, category, datetime, movement, pressure, wind, headline) {
+    function createStormListItem(type, name, category, datetime, movement, pressure, wind, headline, coneTrack, satelliteGif, irSatelliteGif) {
         const stormListItem = document.createElement('div');
 
         const stormText = document.createElement('span');
         stormListItem.appendChild(stormText);
 
-        if (type.toLowerCase() == "hurricane") {
+        if (type == "HU") {
             const hurricaneIcon = document.createElement('img');
             hurricaneIcon.src = '/images/hurricane.png';
             hurricaneIcon.id = 'hurricane-icon';

@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(data => {
                 data.active_storms.forEach(cyclone => {
                     const name = cyclone.name
-                    const type = cyclone.category
+                    const type = cyclone.type
                     const datetime = cyclone.datetime
                     const movement = cyclone.movement
                     const pressure = cyclone.pressure
@@ -85,11 +85,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     const irSatelliteGif = cyclone.irSatelliteGif
 
                     const stormData = { type, name, category, datetime, movement, pressure, wind, headline, coneTrack, satelliteGif, irSatelliteGif };
-                    if (type.toLowerCase() == "hurricane") {
+                    if (type == "HU") {
                         currentStormData.hurricanes.push(stormData);
-                    } else if (type.toLowerCase() == "tropical storm") {
+                    } else if (type == "TS") {
                         currentStormData.storms.push(stormData);
-                    } else if (type.toLowerCase() == "tropical depression" || type.toLowerCase() == "potential tropical cyclone") {
+                    } else if (type == "TD" || type == "PTC") {
                         currentStormData.depressions.push(stormData);
                     }
                 });
@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const stormText = document.createElement('span');
         stormListItem.appendChild(stormText);
 
-        if (type.toLowerCase() === "hurricane") {
+        if (type === "HU") {
             const hurricaneIcon = document.createElement('img');
             hurricaneIcon.src = '/images/hurricane.png';
             hurricaneIcon.id = 'hurricane-icon';
@@ -159,20 +159,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             stormListItem.innerHTML += `${type} ${name}: Category ${category}`;
-        } else if (type.toLowerCase() == "tropical storm") {
+        } else if (type == "TS") {
             const tsIcon = document.createElement('img');
             tsIcon.src = '/images/tropical-storm.png';
             tsIcon.id = 'hurricane-icon';
             stormListItem.className = "storm-list-item";
             stormListItem.appendChild(tsIcon);
 
-            stormListItem.innerHTML += `${type} ${name}`;
-        } else if (type.toLowerCase().includes("depression")) {
+            stormListItem.innerHTML += `${category} ${name}`;
+        } else if (type == "TD") {
             stormListItem.className = "depression-list-item";
-            stormListItem.innerHTML = `${type} ${name}`;
-        } else if (type.toLowerCase().includes("potential")) {
+            stormListItem.innerHTML = `${category} ${name}`;
+        } else if (type.includes("PTC")) {
             stormListItem.className = "depression-list-item";
-            stormListItem.innerHTML = `Potential TC ${name}`;
+            stormListItem.innerHTML = `${category} ${name}`;
         }
 
         const update = document.createElement('div');

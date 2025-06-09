@@ -50,11 +50,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     const irSatelliteGif = storm.irSatelliteGif
 
                     const stormData = { type, name, datetime, movement, pressure, wind, headline, coneTrack, satelliteGif, irSatelliteGif };
-                    if (type.toLowerCase() == "hurricane") {
+                    if (type == "HU") {
                         currentStormData.hurricanes.push(stormData);
-                    } else if (type.toLowerCase() == "tropical storm") {
+                    } else if (type == "TS") {
                         currentStormData.storms.push(stormData);
-                    } else if (type.toLowerCase() == "tropical depression" || type.toLowerCase() == "potential tropical cyclone") {
+                    } else if (type == "TD" || type == "PTC") {
                         currentStormData.depressions.push(stormData);
                     }
                 });
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const stormText = document.createElement('span');
         stormListItem.appendChild(stormText);
 
-        if (type.toLowerCase() == "tropical storm") {
+        if (type == "tropical storm") {
             const tsIcon = document.createElement('img');
             tsIcon.src = '/images/tropical-storm.png';
             tsIcon.id = 'hurricane-icon';

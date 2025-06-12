@@ -99,10 +99,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const stormText = document.createElement('span');
         stormListItem.appendChild(stormText);
 
-        if (type == "tropical depression") {
+        if (type == "TD") {
             stormListItem.className = "depression-list-item";
             stormListItem.innerHTML = `${type} ${name}`;
-        } else if (type == "potential tropical cyclone") {
+        } else if (type == "PC" || type == "PTC") {
             stormListItem.className = "depression-list-item";
             stormListItem.innerHTML = `Potential TC ${name}`;
         }

@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         currentStormData.hurricanes.push(stormData);
                     } else if (type == "TS") {
                         currentStormData.storms.push(stormData);
-                    } else if (type == "TD" || type == "PTC") {
+                    } else if (type == "TD" || type == "PTC" || type == "PC") {
                         currentStormData.depressions.push(stormData);
                     }
                 });

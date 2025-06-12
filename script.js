@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (type == "TD") {
             stormListItem.className = "depression-list-item";
             stormListItem.innerHTML = `${category} ${name}`;
-        } else if (type.includes("PTC")) {
+        } else if (type.includes("PTC") || type.includes("PC")) {
             stormListItem.className = "depression-list-item";
             stormListItem.innerHTML = `${category} ${name}`;
         }

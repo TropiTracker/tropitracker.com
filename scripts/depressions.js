@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let hideTD = true;
 
-    const api = 'https://api.tropitracker.com/active_storms'
+    const api = 'https://api.tropitracker.com/active_storms?nocache=' + Date.now()
 
     let currentImageType = 'cone';
 
@@ -102,9 +102,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (type == "TD") {
             stormListItem.className = "depression-list-item";
             stormListItem.innerHTML = `${type} ${name}`;
-        } else if (type == "PC" || type == "PTC") {
+        } else if (type == "PC") {
             stormListItem.className = "depression-list-item";
-            stormListItem.innerHTML = `Potential TC ${name}`;
+            stormListItem.innerHTML = `Potential Tropical Cyclone ${name}`;
+        } else if (type == "PTC") {
+            stormListItem.className = "depression-list-item";
+            stormListItem.innerHTML = `Post-Tropical Cyclone ${name}`;
         }
 
         const update = document.createElement('div');

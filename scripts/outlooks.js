@@ -1,4 +1,4 @@
-const api = 'https://api.tropitracker.com/outlooks'
+const api = 'https://api.tropitracker.com/outlooks?nocache=' + Date.now()
 
 document.addEventListener('DOMContentLoaded', () => {
     const atlButton = document.getElementById("atlButton");

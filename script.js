@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
             depressions: []
         };
 
-        const api = 'https://api.tropitracker.com/active_storms'
+        const api = 'https://api.tropitracker.com/active_storms?nocache=' + Date.now()
 
         fetch(api).then(response => response.json())
             .then(data => {
@@ -169,10 +169,13 @@ document.addEventListener('DOMContentLoaded', () => {
             stormListItem.innerHTML += `${category} ${name}`;
         } else if (type == "TD") {
             stormListItem.className = "depression-list-item";
-            stormListItem.innerHTML = `${category} ${name}`;
-        } else if (type.includes("PTC") || type.includes("PC")) {
+            stormListItem.innerHTML = `Tropical Depression ${name}`;
+        } else if (type == "PTC") {
             stormListItem.className = "depression-list-item";
-            stormListItem.innerHTML = `${category} ${name}`;
+            stormListItem.innerHTML = `Post-Tropical Cyclone ${name}`;
+        } else if (type == "PC") {
+            stormListItem.className = "depression-list-item";
+            stormListItem.innerHTML = `Potential Tropical Cyclone ${name}`;
         }
 
         const update = document.createElement('div');

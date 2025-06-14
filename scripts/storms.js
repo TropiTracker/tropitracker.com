@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let hideTS = true;
 
-    const api = 'https://api.tropitracker.com/active_storms'
+    const api = 'https://api.tropitracker.com/active_storms?nocache=' + Date.now()
 
     let currentImageType = 'cone';
 
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
             stormListItem.className = "storm-list-item";
             stormListItem.appendChild(tsIcon);
 
-            stormListItem.innerHTML += `${type} ${name}`;
+            stormListItem.innerHTML += `Tropical Storm ${name}`;
         }
 
         const update = document.createElement('div');

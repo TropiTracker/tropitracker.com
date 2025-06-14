@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const depList = document.getElementById('depressions');
     const stormList = document.getElementById('storms');
 
-    const api = 'https://api.tropitracker.com/active_storms';
+    const api = 'https://api.tropitracker.com/active_storms?nocache=' + Date.now();
 
     let hideHurricanes = true;
 
